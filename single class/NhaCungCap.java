@@ -1,44 +1,93 @@
-package fastfoodanddrinkstore;
+package fastfoodanddrink;
 
 import java.util.*;
 public class NhaCungCap {
 	Scanner in = new Scanner(System.in);
-	private String maNcc;
-	private String tenNcc;
-	private String loaiHang;
+	private String mancc;
+	private String tenncc;
+	private String loaihang;
 	//Constructor
 	public NhaCungCap() {}
-	public NhaCungCap(String maNcc, String tenNcc, String loaiHang) {
-		this.maNcc = maNcc;
-		this.tenNcc = tenNcc;
-		this.loaiHang = loaiHang;
+	public NhaCungCap(String mancc, String tenncc, String loaihang){
+		this.mancc = mancc;
+		this.tenncc = tenncc;
+		this.loaihang = loaihang;
 	}
-	public NhaCungCap(NhaCungCap ncc) {
-		maNcc = ncc.maNcc;
-		tenNcc = ncc.tenNcc;
-		loaiHang = ncc.loaiHang;
+	public NhaCungCap(NhaCungCap ncc){
+		mancc = ncc.mancc;
+		tenncc = ncc.tenncc;
+		loaihang = ncc.loaihang;
 	}
-	//Getter and Setter
-	public String getMaNcc() {
-		return maNcc;
+	//Getter & Setter
+	public String getMancc() {
+		return mancc;
 	}
-	public void setMaNcc(String maNcc) {
-		this.maNcc = maNcc;
+	public void setMancc(String mancc) {
+		this.mancc = mancc;
 	}
-	public String getTenNcc() {
-		return tenNcc;
+	public String getTenncc() {
+		return tenncc;
 	}
-	public void setTenNcc(String tenNcc) {
-		this.tenNcc = tenNcc;
+	public void setTenncc(String tenncc) {
+		this.tenncc = tenncc;
 	}
-	public String getLoaiHang() {
-		return loaiHang;
+	public String getLoaihang() {
+		return loaihang;
 	}
-	public void setLoaiHang(String loaiHang) {
-		this.loaiHang = loaiHang;
+	public void setLoaihang(String loaihang) {
+		this.loaihang = loaihang;
 	}
 	//Input & Output
-	public void nhap() {
+	public void nhap(){
+		//for format string
+		RemoveRedundantSpace rp = new RemoveRedundantSpace();
+		//enter mancc
+		while(true) {
+			System.out.print("Nhap vao ma cua nh cung cap (5 ky tu): ");
+				mancc = in.nextLine();
+				if(mancc.length() == 5) {
+				break;
+			}
+		}
 		
+		//Enter tenncc
+		while(true) {
+			System.out.print("Nhap vao ten cua nha cung cap: ");
+			tenncc = in.nextLine();
+			if(tenncc.equals(" ") == false && tenncc.equals("") == false && tenncc.equals(null) == false) {
+				break;
+			}
+		}
+		tenncc = rp.removeSpace(tenncc);		//remove all redundant space from user input
+		
+		//Enter loaihang
+		while(true) {
+			System.out.print("Nhap vao loai cua san pham: ");
+			loaihang = in.nextLine();
+			if(loaihang.equals(" ") == false && loaihang.equals("") == false && loaihang.equals(null) == false) {
+				break;
+			}
+		}
+		loaihang = rp.removeSpace(loaihang);		//remove all redundant space from user input
+				
+	}
+	public void xuat(){
+		//format tenncc
+		String tennccTemp = tenncc;
+		tennccTemp = tennccTemp.toUpperCase();
+		int tennccLength = tennccTemp.length();
+		for(int i = 0; i < 35-tennccLength; i++) {
+			tennccTemp += " ";
+		}
+		
+		//format tenncc
+		String loaihangTemp = loaihang;
+		loaihangTemp = loaihangTemp.toUpperCase();
+		int loaihangLength = loaihangTemp.length();
+		for(int i = 0; i < 28-loaihangLength; i++) {
+			loaihangTemp += " ";
+		}
+		
+		System.out.println(mancc + " | " + tennccTemp + " | " + loaihangTemp + " | ");
 	}
 }
